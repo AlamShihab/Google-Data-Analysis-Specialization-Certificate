@@ -1,0 +1,98 @@
+
+
+
+
+************************Car infor DBBS***************************
+
+***see make variable's level
+
+Select 
+  DISTINCT make
+FROM
+  basic-projects-402606.cars.car_info
+limit 1000
+
+
+**Minimum and Maximum
+
+SELECT
+  MIN(length) AS min_length, # I was not putting the comma here
+  MAX(length) As max_length
+FROM
+  basic-projects-402606.cars.car_info
+
+
+***Dealing with missing value
+
+*find missing value first
+
+SELECT
+  *
+FROM
+  basic-projects-402606.cars.car_info
+
+WHERE
+  num_of_doors IS NULL;
+
+
+*update null value
+
+UPDATE
+  basic-projects-402606.cars.car_info
+SET 
+  num_of_doors = "four"
+WHERE
+  make = "dodge"
+  AND fuel_type = "gas"
+  AND body_style = "sedan";
+
+
+*make sure it set's right
+
+SELECT
+  *
+FROM
+  basic-projects-402606.cars.car_info
+
+WHERE
+  num_of_doors IS NULL;
+
+
+
+
+
+***Identifying potential errors
+
+*Check the error
+
+SELECT
+  DISTINCT num_of_cylinders
+FROM
+  basic-projects-402606.cars.car_info
+
+*update
+
+UPDATE
+  basic-projects-402606.cars.car_info
+SET
+  num_of_cylinders = "two"  #here you have to put the correcrt word
+WHERE
+  number_of_cylinders = "two"; #here you have to put the misspelled word
+
+
+*check the query again
+
+SELECT
+  DISTINCT num_of_cylinders
+FROM
+  basic-projects-402606.cars.car_info;
+
+*as the compression_ratio column values should range from 7 to 23 it need to be checked
+
+SELECT
+  MIN(compression_ratio) AS min_compression_ratio,
+  MAX(compression_ratio) AS max_compression_ratio
+FROM
+  basic-projects-402606.cars.car_info;
+
+
